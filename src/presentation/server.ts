@@ -3,5 +3,3 @@ export class Server {
     console.log("Server started...");
   }
 }
-
-Server.start();
