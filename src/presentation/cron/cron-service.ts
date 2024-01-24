@@ -1,14 +1,11 @@
 import { CronJob } from "cron";
 
+type CronTime = string | Date;
+type OnTick = () => void;
+
 export class CronService {
-  static createJob(): CronJob {
-    const job = new CronJob(
-      "*/10 * * * * *", // cronTime
-      () => {
-        const date = new Date();
-        console.log("You will see this message every 10 second", date);
-      } // onTick
-    );
+  static createJob(cronTime: CronTime, onTick: OnTick): CronJob {
+    const job = new CronJob(cronTime, onTick);
     job.start();
     return job;
   }
