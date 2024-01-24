@@ -6,7 +6,7 @@ export class Server {
     console.log("Server started...");
 
     CronService.createJob(
-      "*/5 * * * * *", // cronTime
+      "*/15 * * * * *", // cronTime
       () => {
         new CheckService().execute("https://google.com");
       }
