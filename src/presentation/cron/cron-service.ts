@@ -1,7 +1,7 @@
 import { CronJob } from "cron";
 
 export class CronService {
-  static createJob() {
+  static createJob(): CronJob {
     const job = new CronJob(
       "*/10 * * * * *", // cronTime
       () => {
