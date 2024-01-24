@@ -4,6 +4,12 @@ export class Server {
   public static start() {
     console.log("Server started...");
 
-    CronService.createJob();
+    CronService.createJob(
+      "*/10 * * * * *", // cronTime
+      () => {
+        const date = new Date();
+        console.log("You will see this message every 10 seconds", date);
+      }
+    );
   }
 }
