@@ -3,12 +3,13 @@ import { CronJob } from "cron";
 export class CronService {
   static createJob() {
     const job = new CronJob(
-      "*/20 * * * * *", // cronTime
+      "*/10 * * * * *", // cronTime
       () => {
         const date = new Date();
-        console.log("You will see this message every 20 second", date);
+        console.log("You will see this message every 10 second", date);
       } // onTick
     );
     job.start();
+    return job;
   }
 }
