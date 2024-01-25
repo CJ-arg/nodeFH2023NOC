@@ -8,7 +8,10 @@ export class Server {
     CronService.createJob(
       "*/15 * * * * *", // cronTime
       () => {
-        new CheckService().execute("https://google.com");
+        new CheckService(
+          () => console.log("success"),
+          (error) => console.log(error)
+        ).execute("https://google.com");
       }
     );
     // CronService.createJob(
