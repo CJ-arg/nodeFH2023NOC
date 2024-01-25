@@ -1,8 +1,11 @@
 interface CheckServiceUseCase {
   execute(url: string): Promise<boolean>;
 }
+type SuccessCallback = () => void;
+type ErrorCallback = (error: string) => void;
 
 export class CheckService implements CheckServiceUseCase {
+  constructor() {}
   public async execute(url: string): Promise<boolean> {
     try {
       const req = await fetch(url);
