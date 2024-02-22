@@ -3,7 +3,7 @@ import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 import fs from "fs";
 export class FileSystemDatasource implements LogDatasource {
   private readonly logPath = "losgs/";
-  private readonly lowLogsPath = "losgs/logs-low.log";
+  private readonly allLogsPath = "losgs/logs-all.log";
   private readonly midLogsPath = "losgs/logs-medium.log";
   private readonly hiLogsPath = "losgs/logs-high.log";
 
@@ -15,9 +15,14 @@ export class FileSystemDatasource implements LogDatasource {
     if (!fs.existsSync(this.logPath)) {
       fs.mkdirSync(this.logPath);
     }
+    [this.allLogsPath, this.midLogsPath, this.hiLogsPath].forEach((path) => {
+      if (fs.existsSync(path)) return;
+      fs.writeFileSync(path, "");
+    });
   };
+
   saveLog(log: LogEntity): Promise<void> {
-    throw new Error("Method not implemented.");
+    fs.appendFileSync(this.allLogsPath, `${JSON.stringify(log)} \n`);
   }
   getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
     throw new Error("Method not implemented.");
