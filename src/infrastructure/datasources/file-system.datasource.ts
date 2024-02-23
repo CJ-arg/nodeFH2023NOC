@@ -31,10 +31,21 @@ export class FileSystemDatasource implements LogDatasource {
       fs.appendFileSync(this.hiLogsPath, logAsJson);
     }
   }
-  getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
+
+  private getLogsFromFile = (path: string): LogEntity[] => {
+    const content = fs.readFileSync(path, "utf-8");
+  };
+
+  async getLogs(severityLevel: LogSeverityLevel): Promise<LogEntity[]> {
     switch (severityLevel) {
       case LogSeverityLevel.low:
         return [];
+      case LogSeverityLevel.medium:
+        return [];
+      case LogSeverityLevel.high:
+        return [];
+      default:
+        new Error(`${severityLevel} not implemented`);
     }
   }
 }
