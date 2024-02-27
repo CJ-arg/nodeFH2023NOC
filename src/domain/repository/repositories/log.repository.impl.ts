@@ -1,7 +1,5 @@
 import { LogDatasource } from "../../datasources/log.datsource";
-
 import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
-
 import { LogRepository } from "../log.repository";
 
 export class LogRepositoryImpl implements LogRepository {
